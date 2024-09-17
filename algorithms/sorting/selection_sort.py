@@ -14,12 +14,12 @@ Selection sort algorithm
 def selection_sort(arr):
     
     for i in range(0, len(arr)):
-        minvalue = arr[0]
+        minvalue = arr[i]
         minindex = i 
-        for red in range(i+1,len(arr)):
-            if arr[red] < minvalue:
-                minvalue = arr[red]
-                minindex = red
+        for j in range(i+1,len(arr)):
+            if arr[j] < minvalue:
+                minvalue = arr[j]
+                minindex = j
         arr[i] , arr[minindex] = arr[minindex], arr[i] 
     
     print(arr)
