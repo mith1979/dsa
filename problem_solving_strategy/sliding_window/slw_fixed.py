@@ -30,6 +30,7 @@ def slw_fixed_linear_time(arr, k):
     L = 0 
     for R in range(len(arr)):
         # breakpoint()
+        
         if R-L+1> k:
             window.remove(arr[L])
             L +=1
@@ -38,14 +39,38 @@ def slw_fixed_linear_time(arr, k):
             return True 
 
         window.add(arr[R])
+        print(f"{window}")
     return False
 
 # Test
 
-arr = [1,2,3,4,5,6,7,1]
-print(slw_fixed_brute_force(arr, 2))
+# arr = [1,2,3,4,5,6,7,1]
+# print(slw_fixed_brute_force(arr, 2))
 
 # arr2 = [1,2,2,1]
-arr2 = [1,2,3,4]
-print(f"Brute Force sol : {slw_fixed_brute_force(arr2, 3)}")
-print(f"linear time sol : {slw_fixed_linear_time(arr2, 2)}")
+# arr2 = [1,2,3,1]
+# print(f"Brute Force sol : {slw_fixed_brute_force(arr2, 3)}")
+# print(f"linear time sol : {slw_fixed_linear_time(arr2, 3)}")
+
+# APPLICATION
+
+# Problem Set 1 : Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
+
+def containsNearbyDuplicate(arr, k):
+    window = set()
+    L = 0
+    for R in range(len(arr)):
+        if R-L > k:
+            window.remove(arr[L])
+            L+=1
+        if arr[R] in window:
+            return True
+        window.add(arr[R])
+           
+    return False
+
+arr1 = [1,2,3,1] # k=3
+arr2 = [1,0,1,1] # k =1
+arr3 = [1,2,3,1,2,3] #k = 2
+
+print(f"contain near by duplicate sol : {containsNearbyDuplicate(arr3, 2)}")
