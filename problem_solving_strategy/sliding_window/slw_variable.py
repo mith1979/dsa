@@ -17,7 +17,7 @@ We can make use of two pointers, L and R. Our constraint is that we cannot have 
 """
 
 # Q: Find the length of the longest subarray with the same value in each position.
-arr = [4,2,2,3,3,3]
+
 
 def longest_subarray(arr):
     L = 0
@@ -25,4 +25,9 @@ def longest_subarray(arr):
     for R in range(len(arr)):
         if arr[L] != arr[R]:
             L =R
-        length = max(length, R-L) 
+        length = max(length, R-L+1)
+    return length 
+
+arr = [4,2,2,3,3,3]
+
+print(f"Longest Subarray : {longest_subarray(arr)}")
