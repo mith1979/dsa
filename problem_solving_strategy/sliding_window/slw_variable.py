@@ -15,6 +15,7 @@ We can make use of two pointers, L and R. Our constraint is that we cannot have 
 5. The length can be calculated by taking the difference between R and L and adding 1.
 
 """
+######Classic Examples####
 
 # Q: Find the length of the longest subarray with the same value in each position.
 
@@ -25,9 +26,42 @@ def longest_subarray(arr):
     for R in range(len(arr)):
         if arr[L] != arr[R]:
             L =R
-        length = max(length, R-L+1)
+        length = max(length, R-L+1) # rem here we are adding 1 since L starts at 0
     return length 
 
 arr = [4,2,2,3,3,3]
 
+# print(f"Longest Subarray : {longest_subarray(arr)}")
+
+# -> Variation in the above code without using L or R pointers
+
+def longest_subarray_wo_LR(arr):
+    length = 0
+    for i in range(len(arr)):
+        if i == len(arr):
+            break
+        if arr[i] != arr[i+1]:
+            length =1
+        else:
+            length+=1
+    return length 
+
+arr = [4,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4]
+
 print(f"Longest Subarray : {longest_subarray(arr)}")
+
+
+# Q: Find the minimum length subarray, where the sum is greater than or equal to the target. Assume all values are positive.
+
+"""
+1. First we need to ensure our window has a sum greater than or equal to the target. We do this by expanding our window from the right.
+2. Next we need to minimize the size of our window. We do this by shrinking our window from the left.
+
+
+Time Complexity
+Even though we have nested loops, the time complexity of this approach is O(n)
+
+The inner loop won't necessarily run n times at every iteration. In fact, it may not run at all in some iterations when target sum >>> elements of the lists. This is what is referred to as amortized analysis. The total number of iterations of the inner loop is n, same as the outer loop.
+
+Thus, both pointers move at most n times, making the time complexity O(n).
+"""
